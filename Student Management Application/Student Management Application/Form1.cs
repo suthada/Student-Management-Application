@@ -12,11 +12,12 @@ namespace Student_Management_Application
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV (*.csv) | * csv.";
+            openFileDialog.Filter = "CSV (*.csv) | *.csv";
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string[] readAllLine = File.ReadAllLines(openFileDialog.FileName);
                 string readAllText = File.ReadAllText(openFileDialog.FileName);
+                this.textBox1.Text = readAllText;
             }
         }
 
@@ -24,7 +25,7 @@ namespace Student_Management_Application
         {
             string filepath = string.Empty;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV (*.csv) | * csv.";
+            saveFileDialog.Filter = "CSV (*.csv) | *.csv";
             if(saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if(saveFileDialog.FileName != string.Empty)
