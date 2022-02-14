@@ -23,6 +23,10 @@ namespace Student_Management_Application
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //string data = this.dataGridView1.Rows[0].Cells[0].Value.ToString();
+
+
             string filepath = string.Empty;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "CSV (*.csv) | *.csv";
@@ -32,9 +36,18 @@ namespace Student_Management_Application
                 {
                     filepath = saveFileDialog.FileName;
 
+                    int row = this.dataGridView1.Rows.Count;
+                    for(int i = 0; i < row; i++)
+                    {
+                        int column = this.dataGridView1.Columns.Count;
+                        for(int j = 0; j < column; j++)
+                        {
+                            this.dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
 
                     //save file
-                    File.WriteAllText(filepath, this.textBox1.Text, Encoding.UTF8);
+                    File.WriteAllText(saveFileDialog.FileName, this.textBox1.Text, Encoding.UTF8);
                 }
             }
 
