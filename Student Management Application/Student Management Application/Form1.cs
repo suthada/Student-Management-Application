@@ -17,12 +17,18 @@ namespace Student_Management_Application
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string[] readAllLine = File.ReadAllLines(openFileDialog.FileName);
-                string readAllText = File.ReadAllText(openFileDialog.FileName);
-                //this.textBox1.Text = readAllText;
-                //this.dataGridView1.Rows.Add()
-                addDataToGridview("01","name","cis");
+                
+
+                for(int i = 0; i < readAllLine.Length; i++)
+                {
+                    string studentRAW = readAllLine[i];
+                    string[] studentSplited = studentRAW.Split(',');
+                    Student student = new Student(studentSplited[0], studentSplited[1], studentSplited[2]);
+                    //addDataToGridview(student);
+                    //TODO Add student object to DataGridView 
+                }
+                //TODO calculate max, min, gpax
             }
-            
         }
         private void addDataToGridview(string id, string name, string major)
         {
@@ -40,15 +46,17 @@ namespace Student_Management_Application
             {
                 if(saveFileDialog.FileName != string.Empty)
                 {
-
                     int row = this.dataGridView1.Rows.Count;
                     for(int i = 0; i < row; i++)
                     {
                         int column = this.dataGridView1.Columns.Count;
                         for(int j = 0; j < column; j++)
                         {
-                            strData = this.dataGridView1.Rows[i].Cells[j].Value.ToString();
-                            //TODO make data from dataGridViewl to variable
+                            if (this.dataGridView1.Rows[i].Cells[j].Value != null)
+                            {
+                                strData = this.dataGridView1.Rows[i].Cells[j].Value.ToString();
+                                //TODO: save data from dataGridViewl to variable
+                            }
                         }
                     }
 
@@ -56,7 +64,12 @@ namespace Student_Management_Application
                     File.WriteAllText(saveFileDialog.FileName, strData, Encoding.UTF8);
                 }
             }
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //TODO add data to data gridview
+            //TODO calculate GPX, Max, Min
         }
     }
 }
