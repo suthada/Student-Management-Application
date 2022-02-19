@@ -1,9 +1,10 @@
-using System.Text;
+﻿using System.Text;
 
 namespace Student_Management_Application
 {
     public partial class Form1 : Form
     {
+        Student_Management oCal = new Student_Management();
         public Form1()
         {
             InitializeComponent();
@@ -23,11 +24,13 @@ namespace Student_Management_Application
                 {
                     string studentRAW = readAllLine[i];
                     string[] studentSplited = studentRAW.Split(',');
-                    Student student = new Student(studentSplited[0], studentSplited[1], studentSplited[2]);
-                    //addDataToGridview(student);
+                    //Student student = new Student(studentSplited[0], studentSplited[1], studentSplited[2]);
+                    
+                    //addDataToGridview(student);  //แสดงผลลงที่ช่องของAllData
                     //TODO Add student object to DataGridView 
                 }
-                //TODO calculate max, min, gpax
+                //TODO calculate max, min, gpax //เขียนวิธีการคำนวณ
+
             }
         }
         private void addDataToGridview(string id, string name, string major)
@@ -36,40 +39,63 @@ namespace Student_Management_Application
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
-
-            string strData = string.Empty;
-            
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV (*.csv) | *.csv";
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            if (dataGridView1.Rows.Count > 0)
             {
-                if(saveFileDialog.FileName != string.Empty)
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "CSV(*.csv)|*.csv";
+                bool fileError = false;
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    int row = this.dataGridView1.Rows.Count;
-                    for(int i = 0; i < row; i++)
+                    if (!fileError)
                     {
-                        int column = this.dataGridView1.Columns.Count;
-                        for(int j = 0; j < column; j++)
+                        try
                         {
-                            if (this.dataGridView1.Rows[i].Cells[j].Value != null)
+                            int columnCount = dataGridView1.Columns.Count;
+                            string column = "";
+                            string[] outputCSV = new string[dataGridView1.Rows.Count + 1];
+                            for (int i = 0; i < columnCount; i++)
                             {
-                                strData = this.dataGridView1.Rows[i].Cells[j].Value.ToString();
-                                //TODO: save data from dataGridViewl to variable
+                                column += dataGridView1.Columns[i].HeaderText.ToString() + ",";
                             }
+                            outputCSV[0] += column;
+                            for (int i = 1; (i - 1) < dataGridView1.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < columnCount; j++)
+                                {
+                                    outputCSV[i] += dataGridView1.Rows[i - 1].Cells[j].Value.ToString() + ",";
+                                }
+                            }
+                            
+                            File.WriteAllLines(saveFileDialog.FileName, outputCSV, Encoding.UTF8);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
                         }
                     }
-
-                    //save file
-                    File.WriteAllText(saveFileDialog.FileName, strData, Encoding.UTF8);
                 }
             }
         }
-
+        /*
         private void button1_Click(object sender, EventArgs e)
         {
             //TODO add data to data gridview
             //TODO calculate GPX, Max, Min
+
+            //string input = this.dataGridView1.Text;
+            //= da
         }
-    }
+        */
+
+        private void button2Add_Click(object sender, EventArgs e)
+        {
+            int n = dataGridView1.Rows.Add();
+            dataGridView1.Rows[n].Cells[0].Value = textBoxId.Text;
+            dataGridView1.Rows[n].Cells[1].Value = textBoxName.Text;
+            dataGridView1.Rows[n].Cells[2].Value = comboBoxMajor.Text;
+            dataGridView1.Rows[n].Cells[3].Value = textBoxGPA.Text;
+
+        }
+    } 
 }
