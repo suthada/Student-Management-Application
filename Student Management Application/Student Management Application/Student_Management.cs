@@ -9,14 +9,14 @@ namespace Student_Management_Application
     internal class Student_Management
     {
         private double Max = 0;
-        private double Min = 4;
+        private double Min = 0;
         private double sum = 0;
         private string alldata = "";
         private string Maxname = "";
         private string Minname = "";
         private int n = 0;
 
-        public void addList(string Name, double GPA)
+        public void addGPA(string Name, double GPA)
         {
             this.sum += GPA;
             this.n++;
@@ -36,12 +36,9 @@ namespace Student_Management_Application
 
             }
         }
-        internal void addGPA(double dInpu, string name)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public double getGPA()
+        public double GetGPAx()
         {
             double result = this.sum / this.n;
             return result;
@@ -67,5 +64,10 @@ namespace Student_Management_Application
         {
             return Minname;
         }
+
+        //internal void addGPAx(double dInpu, string name)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -220,6 +220,7 @@
             // 
             this.textBoxMin.Location = new System.Drawing.Point(81, 132);
             this.textBoxMin.Name = "textBoxMin";
+            this.textBoxMin.ReadOnly = true;
             this.textBoxMin.Size = new System.Drawing.Size(151, 27);
             this.textBoxMin.TabIndex = 18;
             // 
@@ -236,6 +237,7 @@
             // 
             this.textBoxMax.Location = new System.Drawing.Point(81, 86);
             this.textBoxMax.Name = "textBoxMax";
+            this.textBoxMax.ReadOnly = true;
             this.textBoxMax.Size = new System.Drawing.Size(151, 27);
             this.textBoxMax.TabIndex = 16;
             // 
@@ -252,6 +254,7 @@
             // 
             this.textBoxGPAx.Location = new System.Drawing.Point(81, 37);
             this.textBoxGPAx.Name = "textBoxGPAx";
+            this.textBoxGPAx.ReadOnly = true;
             this.textBoxGPAx.Size = new System.Drawing.Size(151, 27);
             this.textBoxGPAx.TabIndex = 14;
             // 

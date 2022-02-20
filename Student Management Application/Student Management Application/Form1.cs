@@ -5,6 +5,7 @@ namespace Student_Management_Application
     public partial class Form1 : Form
     {
         Student_Management STD = new Student_Management();
+
         public Form1()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Student_Management_Application
                 {
                     string studentRAW = readAllLine[i];
                     string[] studentSplited = studentRAW.Split(',');
-                    //Student student = new Student(studentSplited[0], studentSplited[1], studentSplited[2]);
+                    Student student = new Student(studentSplited[0], studentSplited[1], studentSplited[2]);
                     
                     //addDataToGridview(student);  //แสดงผลลงที่ช่องของAllData
                     //TODO Add student object to DataGridView 
@@ -99,10 +100,13 @@ namespace Student_Management_Application
             string input = this.textBoxGPA.Text;
             string name = this.textBoxName.Text;
 
-            double dInpu = Convert.ToDouble(input);
-            STD.addGPA(dInpu, name);
+            double dInput = Convert.ToDouble(input);
+            STD.addGPA(name, dInput);
 
-            double gpax = STD.getGPA();
+            //double doutput = Convert.ToDouble(output);
+            //STD.addGPA(name, doutput);
+
+            double gpax = STD.GetGPAx();
             textBoxGPAx.Text = gpax.ToString();
 
             double max = STD.getMax();
