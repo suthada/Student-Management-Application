@@ -276,9 +276,9 @@
             // 
             // button2Add
             // 
-            this.button2Add.Location = new System.Drawing.Point(39, 242);
+            this.button2Add.Location = new System.Drawing.Point(39, 238);
             this.button2Add.Name = "button2Add";
-            this.button2Add.Size = new System.Drawing.Size(235, 68);
+            this.button2Add.Size = new System.Drawing.Size(214, 68);
             this.button2Add.TabIndex = 14;
             this.button2Add.Text = "Add";
             this.button2Add.UseVisualStyleBackColor = true;

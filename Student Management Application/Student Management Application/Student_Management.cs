@@ -36,8 +36,6 @@ namespace Student_Management_Application
 
             }
         }
-        
-
         public double GetGPAx()
         {
             double result = this.sum / this.n;

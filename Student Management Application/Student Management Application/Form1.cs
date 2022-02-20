@@ -89,6 +89,7 @@ namespace Student_Management_Application
         }
         */
 
+
         private void button2Add_Click(object sender, EventArgs e)
         {
             int n = dataGridView1.Rows.Add();
@@ -102,9 +103,6 @@ namespace Student_Management_Application
 
             double dInput = Convert.ToDouble(input);
             STD.addGPA(name, dInput);
-
-            //double doutput = Convert.ToDouble(output);
-            //STD.addGPA(name, doutput);
 
             double gpax = STD.GetGPAx();
             textBoxGPAx.Text = gpax.ToString();
