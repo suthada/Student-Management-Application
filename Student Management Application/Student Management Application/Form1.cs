@@ -4,7 +4,7 @@ namespace Student_Management_Application
 {
     public partial class Form1 : Form
     {
-        Student_Management oCal = new Student_Management();
+        Student_Management STD = new Student_Management();
         public Form1()
         {
             InitializeComponent();
@@ -84,7 +84,7 @@ namespace Student_Management_Application
             //TODO calculate GPX, Max, Min
 
             //string input = this.dataGridView1.Text;
-            //= da
+            
         }
         */
 
@@ -96,6 +96,20 @@ namespace Student_Management_Application
             dataGridView1.Rows[n].Cells[2].Value = comboBoxMajor.Text;
             dataGridView1.Rows[n].Cells[3].Value = textBoxGPA.Text;
 
+            string input = this.textBoxGPA.Text;
+            string name = this.textBoxName.Text;
+
+            double dInpu = Convert.ToDouble(input);
+            STD.addGPA(dInpu, name);
+
+            double gpax = STD.getGPA();
+            textBoxGPAx.Text = gpax.ToString();
+
+            double max = STD.getMax();
+            textBoxMax.Text = max.ToString();
+
+            double min = STD.getMin();
+            textBoxMin.Text = min.ToString();
         }
     } 
 }

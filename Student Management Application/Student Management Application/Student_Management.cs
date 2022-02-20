@@ -8,26 +8,37 @@ namespace Student_Management_Application
 {
     internal class Student_Management
     {
-        private double GPA = 0;
-        private double GPAx = 0;
         private double Max = 0;
-        private double Min = 0;
+        private double Min = 4;
         private double sum = 0;
+        private string alldata = "";
+        private string Maxname = "";
+        private string Minname = "";
         private int n = 0;
 
-        public void addList(int Id, string Name, double GPA)
+        public void addList(string Name, double GPA)
         {
             this.sum += GPA;
+            this.n++;
+            this.alldata += Name + " " + GPA + Environment.NewLine;
+
             if (this.Max < GPA)
             {
                 this.Max = GPA;
+                this.Maxname = Name;
+
 
             }
-            if (this.Max > GPA)
+            if (this.Min > GPA)
             {
                 this.Min = GPA;
+                this.Minname = Name;
 
             }
+        }
+        internal void addGPA(double dInpu, string name)
+        {
+            throw new NotImplementedException();
         }
 
         public double getGPA()
@@ -35,14 +46,26 @@ namespace Student_Management_Application
             double result = this.sum / this.n;
             return result;
         }
+        public string getAlldata()
+        {
+            return alldata;
+        }
         public double getMax()
         {
             return this.Max;
+        }
+        public string getMaxname()
+        {
+            return Maxname;
         }
         public double getMin()
         {
             return this.Min;
         }
 
+        public string getMinname()
+        {
+            return Minname;
+        }
     }
 }
